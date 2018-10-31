@@ -1,0 +1,132 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        applicationId "com.example.android.architecture.blueprints.todoapp.androidx"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        vectorDrawables{
+            useSupportLibrary = true
+        }
+
+        // The following argument makes the Android Test Orchestrator run its
+        // "pm clear" command after each test invocation. This command ensures
+        // that the app's state is completely cleared between tests.
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled true
+            // Uses new built-in shrinker http://tools.android.com/tech-docs/new-build-system/built-in-shrinker
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+        }
+    }
+
+    testOptions {
+        execution 'ANDROID_TEST_ORCHESTRATOR'
+    }
+
+    flavorDimensions "default"
+
+    // If you need to add more flavors, consider using flavor dimensions.
+    productFlavors {
+        mock {
+            dimension "default"
+            applicationIdSuffix = ".mock"
+        }
+        prod {
+            dimension "default"
+        }
+    }
+
+    // Remove mockRelease as it's not needed.
+    android.variantFilter { variant ->
+        if (variant.buildType.name == 'release'
+                && variant.getFlavors().get(0).name == 'mock') {
+            variant.setIgnore(true)
+        }
+    }
+
+    // Always show the result of every unit test, even if it passes.
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        }
+    }
+}
+
+/*
+ Dependency versions are defined in the top level build.gradle file. This helps keeping track of
+ all versions in a single place. This improves readability and helps managing project complexity.
+ */
+dependencies {
+    // App's dependencies, including test
+    implementation "com.android.support:preference-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    implementation "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
+    implementation "com.google.guava:guava:$rootProject.guavaVersion"
+    implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
+    implementation "com.android.support:preference-v14:$rootProject.supportLibraryVersion"
+
+    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:support-vector-drawable:$rootProject.supportLibraryVersion"
+    androidTestUtil 'androidx.test:orchestrator:1.1.0'
+
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation "androidx.test:runner:$rootProject.ext.runnerVersionAndroidX"
+    androidTestImplementation "androidx.test:rules:$rootProject.ext.rulesVersionAndroidX"
+
+    // Espresso UI Testing
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersionAndroidX"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersionAndroidX"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersionAndroidX"
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$rootProject.espressoVersionAndroidX"
+    androidTestImplementation "androidx.test.espresso:espresso-idling-resource:$rootProject.espressoVersionAndroidX"
+    androidTestImplementation "androidx.test.espresso:espresso-web:$rootProject.espressoVersionAndroidX"
+    androidTestImplementation "androidx.test.espresso:espresso-accessibility:$rootProject.espressoVersionAndroidX"
+
+    // Accessibility and UI Automator dependencies
+    androidTestImplementation "com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:$rootProject.accessibilityFramework"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator-v18:$uiautomatorVersionAndroidX"
+
+    // Squareup dependencies
+    androidTestImplementation "com.squareup.okhttp3:okhttp:3.11.0"
+    implementation "com.squareup.picasso:picasso:2.5.2"
+
+    // ConditionalWatcher dependency
+    androidTestImplementation "com.azimolabs.conditionwatcher:conditionwatcher:0.2"
+
+    // Resolve conflicts between main and test APK:
+    androidTestImplementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+    androidTestImplementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    androidTestImplementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    androidTestImplementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    androidTestImplementation "com.android.support:design:$rootProject.supportLibraryVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}

@@ -1,0 +1,181 @@
+package com.example.android.architecture.blueprints.todoapp.test.chapter4.conditionwatchers
+
+import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.NoMatchingViewException
+import android.support.test.espresso.ViewInteraction
+import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import android.view.View
+import android.widget.TextView
+import com.azimolabs.conditionwatcher.ConditionWatcher
+import com.azimolabs.conditionwatcher.Instruction
+import com.example.android.architecture.blueprints.todoapp.R
+import com.example.android.architecture.blueprints.todoapp.tasks.TasksFragment
+import com.example.android.architecture.blueprints.todoapp.test.helpers.Utils.currentActivity
+import org.hamcrest.Matcher
+
+object ConditionWatchers {
+
+    private val TIMEOUT_LIMIT = 20000
+    private val WATCH_INTERVAL = 400
+    private val exceptionList: List<String>? = null
+
+    init {
+        ConditionWatcher.setTimeoutLimit(TIMEOUT_LIMIT)
+        ConditionWatcher.setWatchInterval(400)
+    }
+
+    /**
+     * Waits until the [] finishes search query.
+     * Check if expectedAmountOfResults is shown.
+     */
+    @Throws(Exception::class)
+    @JvmStatic
+    fun todoListSnackbarGone() {
+        ConditionWatcher.waitForCondition(object : Instruction() {
+            override fun getDescription(): String {
+                return "Condition todoListSnackbarGone"
+            }
+
+            override fun checkCondition(): Boolean {
+                val fragmentActivity = currentActivity
+                if (fragmentActivity != null) {
+                    val currentFragment = fragmentActivity
+                            .supportFragmentManager
+                            .findFragmentById(R.id.contentFrame)
+                    if (currentFragment is TasksFragment) {
+                        val contentView = fragmentActivity.window.decorView.findViewById<View>(android.R.id.content)
+                        if (contentView != null) {
+                            val snackBarTextView = contentView.findViewById<TextView>(android.support.design.R.id.snackbar_text)
+                            return snackBarTextView == null
+                        }
+                    }
+                }
+                return false
+            }
+        })
+    }
+
+    @Throws(Exception::class)
+    @JvmStatic
+    fun waitForElement(
+            interaction: ViewInteraction,
+            timeout: Int = 5000): ViewInteraction {
+        ConditionWatcher.setTimeoutLimit(timeout)
+        ConditionWatcher.waitForCondition(object : Instruction() {
+
+            override fun getDescription(): String {
+                return "waitForElement"
+            }
+
+            override fun checkCondition(): Boolean {
+                try {
+                    interaction.check(matches(isDisplayed()))
+                    return true
+                } catch (ex: NoMatchingViewException) {
+                    return false
+                }
+
+            }
+        })
+        return interaction
+    }
+
+    @Throws(Exception::class)
+    fun waitForElementFullyVisible(
+            interaction: ViewInteraction,
+            timeout: Int): ViewInteraction {
+        ConditionWatcher.setTimeoutLimit(timeout)
+        ConditionWatcher.waitForCondition(object : Instruction() {
+
+            override fun getDescription(): String {
+                return "waitForElementFullyVisible"
+            }
+
+            override fun checkCondition(): Boolean {
+                try {
+                    interaction.check(matches(isDisplayed()))
+                    return true
+                } catch (ex: NoMatchingViewException) {
+                    return false
+                }
+
+            }
+        })
+        return interaction
+    }
+
+    @Throws(Exception::class)
+    @JvmStatic
+    fun waitForElementIsGone(
+            interaction: ViewInteraction,
+            timeout: Int): ViewInteraction {
+        ConditionWatcher.setTimeoutLimit(timeout)
+        ConditionWatcher.waitForCondition(object : Instruction() {
+
+            override fun getDescription(): String {
+                return "waitForElementIsGone"
+            }
+
+            override fun checkCondition(): Boolean {
+                try {
+                    interaction.check(matches(isDisplayed()))
+                    return false
+                } catch (ex: NoMatchingViewException) {
+                    return true
+                }
+
+            }
+        })
+        return interaction
+    }
+
+    @Throws(Exception::class)
+    @JvmStatic
+    fun waitForElementIsGone(
+            viewMatcher: Matcher<View>,
+            timeout: Int = 2000) {
+        ConditionWatcher.setTimeoutLimit(timeout)
+        ConditionWatcher.waitForCondition(object : Instruction() {
+
+            override fun getDescription(): String {
+                return "waitForElementIsGone"
+            }
+
+            override fun checkCondition(): Boolean {
+                try {
+                    onView(viewMatcher).check(matches(isDisplayed()))
+                    return false
+                } catch (ex: NoMatchingViewException) {
+                    return true
+                }
+
+            }
+        })
+    }
+
+    @Throws(Exception::class)
+    fun waitForElementIsGone(
+            interaction: ViewInteraction,
+            viewMatcher: Matcher<View>,
+            timeout: Int): ViewInteraction {
+        ConditionWatcher.setTimeoutLimit(timeout)
+        ConditionWatcher.waitForCondition(object : Instruction() {
+
+            override fun getDescription(): String {
+                return "waitForElementIsGone"
+            }
+
+            override fun checkCondition(): Boolean {
+                try {
+                    onView(viewMatcher).check(matches(isDisplayed()))
+                    return false
+                } catch (ex: NoMatchingViewException) {
+                    return true
+                }
+
+            }
+        })
+        return interaction
+    }
+}
