@@ -1,12 +1,15 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter11.screens
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.android.architecture.blueprints.todoapp.R
 import org.hamcrest.core.AllOf.allOf
 
+/**
+ * Represents application Statistics screen.
+ */
 class StatisticsScreen : BaseScreen() {
 
     private val statisticsTextNoTasks = onView(allOf(withId(R.id.statistics), withText(R.string.statistics_no_tasks)))

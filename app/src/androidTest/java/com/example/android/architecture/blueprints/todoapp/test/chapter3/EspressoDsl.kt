@@ -1,17 +1,17 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter3
 
-import android.support.test.espresso.DataInteraction
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.ViewAction
-import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.action.ViewActions
-import android.support.test.espresso.assertion.ViewAssertions
-import android.support.test.espresso.contrib.RecyclerViewActions
-import android.support.test.espresso.contrib.RecyclerViewActions.*
-import android.support.test.espresso.matcher.ViewMatchers
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.DataInteraction
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.ViewAction
+import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.contrib.RecyclerViewActions.*
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.example.android.architecture.blueprints.todoapp.test.chapter2.customactions.CustomRecyclerViewActions
 import com.example.android.architecture.blueprints.todoapp.test.chapter4.conditionwatchers.ConditionWatchers
 import org.hamcrest.CoreMatchers
@@ -83,14 +83,14 @@ fun ViewInteraction.pressEspressoBack() = Espresso.pressBack()
  * @param milliseconds - milliseconds to sleep
  * @param count - amount of times {@link KeyEvent} should be executed
  */
-fun ViewInteraction.pressKeyAndSleep(key: Int, milliseconds: Long, count: Int = 1): ViewInteraction {
+fun ViewInteraction.sleepAndPressKey(key: Int, milliseconds: Long, count: Int = 1): ViewInteraction {
     for (i in 1..count) {
-        perform(ViewActions.pressKey(key))
         /**
          * Having Thread.sleep() in tests is a bad practice.
          * Here we are using it just to solve specific issue and nothing more.
          */
         Thread.sleep(milliseconds)
+        perform(ViewActions.pressKey(key))
     }
     return this
 }

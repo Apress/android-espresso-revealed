@@ -3,10 +3,10 @@
     package="com.example.android.architecture.blueprints.todoapp.test">
 
     <uses-sdk
-        tools:overrideLibrary="android.support.test.uiautomator.v18" />
+        tools:overrideLibrary="androidx.test.uiautomator" />
 
     <instrumentation
-        android:name="android.support.test.runner.AndroidJUnitRunner"
+        android:name="androidx.test.runner.AndroidJUnitRunner"
         android:targetPackage="com.example.android.architecture.blueprints.todoapp" />
 
 </manifest>

@@ -16,12 +16,13 @@
 
 package com.example.android.architecture.blueprints.todoapp.data.source.local;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.example.android.architecture.blueprints.todoapp.data.Task;
+
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 /**
  * The Room Database that contains the Task table.

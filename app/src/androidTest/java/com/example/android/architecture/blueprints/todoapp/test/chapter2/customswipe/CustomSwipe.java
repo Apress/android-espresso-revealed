@@ -1,11 +1,12 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter2.customswipe;
 
 import android.os.SystemClock;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.action.MotionEvents;
-import android.support.test.espresso.action.Swiper;
 import android.util.Log;
 import android.view.MotionEvent;
+
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.action.MotionEvents;
+import androidx.test.espresso.action.Swiper;
 
 import static com.google.common.base.Preconditions.checkElementIndex;
 import static com.google.common.base.Preconditions.checkNotNull;

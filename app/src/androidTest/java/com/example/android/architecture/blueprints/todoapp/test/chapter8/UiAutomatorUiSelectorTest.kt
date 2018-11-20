@@ -1,18 +1,21 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter8
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
-import android.support.test.uiautomator.UiDevice
-import android.support.test.uiautomator.UiSelector
-import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.rule.ActivityTestRule
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.UiSelector
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Contains tests that use [UiSelector] selectors for elements location.
+ */
 @RunWith(AndroidJUnit4::class)
 class UiAutomatorUiSelectorTest {
 

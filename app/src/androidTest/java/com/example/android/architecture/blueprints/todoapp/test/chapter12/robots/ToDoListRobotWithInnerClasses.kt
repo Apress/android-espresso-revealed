@@ -1,10 +1,10 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter12.robots
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.Espresso.openContextualActionModeOverflowMenu
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.android.architecture.blueprints.todoapp.R
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
@@ -41,6 +41,9 @@ class TasksListRobotWithInnerClasses {
         onView(withId(R.id.noTasksIcon)).check(matches(isDisplayed()))
     }
 
+    /**
+     * Filter view group that represents Filter functionality.
+     */
     fun toDoListFilter(func: ToDoListFilter.() -> Unit) = ToDoListFilter().apply { func() }
     inner class ToDoListFilter {
         init {
@@ -60,6 +63,9 @@ class TasksListRobotWithInnerClasses {
         }
     }
 
+    /**
+     * Menu view group that represents Menu functionality.
+     */
     fun toDoListMenu(func: ToDoListMenu.() -> Unit) = ToDoListMenu().apply { func() }
     inner class ToDoListMenu {
         init {

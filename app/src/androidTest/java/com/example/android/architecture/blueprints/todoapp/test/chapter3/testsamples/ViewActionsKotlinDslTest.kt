@@ -1,7 +1,7 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter3.testsamples
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.android.architecture.blueprints.todoapp.R.id.*
 import com.example.android.architecture.blueprints.todoapp.test.BaseTest
 import com.example.android.architecture.blueprints.todoapp.test.chapter1.data.TestData
@@ -10,6 +10,10 @@ import org.hamcrest.CoreMatchers.allOf
 import org.junit.Before
 import org.junit.Test
 
+/**
+ * Demonstrates ViewActions usage with Kotlin Espresso DSL.
+ * See chapter3.EspressoDsl.kt for details.
+ */
 class ViewActionsKotlinDslTest : BaseTest() {
 
     private var toDoTitle = ""

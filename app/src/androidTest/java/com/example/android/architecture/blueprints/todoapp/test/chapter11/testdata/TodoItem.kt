@@ -1,11 +1,9 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter11.testdata
 
+import java.util.*
+
 class TodoItem {
 
-    val title: String = "title ${System.currentTimeMillis()}"
-    val description: String = "description ${System.currentTimeMillis()}"
-
-    companion object {
-        val new: TodoItem get() = TodoItem()
-    }
+    var title = "title ${System.currentTimeMillis()}${Random().nextInt(1000)}"
+    var description = "description ${System.currentTimeMillis()}${Random().nextInt(1000)}"
 }

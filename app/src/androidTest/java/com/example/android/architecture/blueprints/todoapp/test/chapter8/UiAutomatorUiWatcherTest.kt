@@ -1,11 +1,11 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter8
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
-import android.support.test.uiautomator.*
-import android.support.v7.widget.LinearLayoutCompat
 import android.widget.ImageButton
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.rule.ActivityTestRule
+import androidx.test.uiautomator.*
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import org.junit.After
 import org.junit.Assert.assertTrue
@@ -14,6 +14,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Demonstrates [UiWatcher] functionality in test.
+ */
 @RunWith(AndroidJUnit4::class)
 class UiAutomatorUiWatcherTest {
 

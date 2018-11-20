@@ -1,13 +1,13 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter11.screens
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.Espresso.openContextualActionModeOverflowMenu
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.contrib.RecyclerViewActions.actionOnHolderItem
-import android.support.test.espresso.contrib.RecyclerViewActions.scrollToHolder
-import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnHolderItem
+import androidx.test.espresso.contrib.RecyclerViewActions.scrollToHolder
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.test.chapter11.testdata.TodoItem
 import com.example.android.architecture.blueprints.todoapp.test.chapter2.customactions.CustomRecyclerViewActions.ClickTodoCheckBoxWithTitleViewAction.clickTodoCheckBoxWithTitle
@@ -16,6 +16,9 @@ import com.example.android.architecture.blueprints.todoapp.test.chapter2.customm
 import com.example.android.architecture.blueprints.todoapp.test.chapter4.conditionwatchers.ConditionWatchers
 import org.hamcrest.core.AllOf.allOf
 
+/**
+ * Represents TO-DO list screen.
+ */
 class ToDoListScreen : BaseScreen() {
 
     private val fabAddButton = onView(withId(R.id.fab_add_task))
@@ -23,6 +26,8 @@ class ToDoListScreen : BaseScreen() {
     private val todoList = onView(withId(R.id.tasks_list))
     private val todoSavedSnackbar = withText(R.string.successfully_saved_task_message)
     private val youHaveNoToDosText = onView(withText(R.string.no_tasks_all))
+    private val taskMarkedCompleteSnackbar = onView(withText(R.string.task_marked_complete))
+    private val snackbar = onView(withText(R.id.snackbar_text))
     private val screenTitle = onView(allOf(withText(R.string.app_name), withParent(withId(R.id.toolbar))))
 
     private val allFilterItem = onView(allOf(withId(R.id.title), withText(R.string.nav_all)))
@@ -43,17 +48,19 @@ class ToDoListScreen : BaseScreen() {
     }
 
     fun clickAddFabButton(): AddEditToDoScreen {
+        ConditionWatchers.waitForElementIsGone(todoSavedSnackbar)
+        ConditionWatchers.waitForElementIsGone(taskMarkedCompleteSnackbar)
         fabAddButton.perform(click())
         return AddEditToDoScreen()
     }
 
-    fun verifyToDoIsDisplayed(taskItem: TodoItem): ToDoListScreen {
+    fun verifyToDoIsDisplayed(taskItem: TodoItem?): ToDoListScreen {
         ConditionWatchers.waitForElementIsGone(todoSavedSnackbar)
-        todoList.perform(scrollToHolder<RecyclerView.ViewHolder>(withTitle(taskItem.title)))
+        todoList.perform(scrollToHolder<RecyclerView.ViewHolder>(withTitle(taskItem!!.title)))
         return this
     }
 
-    fun verifyToDoItemNotShown(taskItem: TodoItem): ToDoListScreen {
+    fun verifyToDoItemNotShown(taskItem: TodoItem?): ToDoListScreen {
         todoList.perform(verifyTaskNotInTheList(taskItem))
         return this
     }
@@ -78,8 +85,8 @@ class ToDoListScreen : BaseScreen() {
         return this
     }
 
-    fun completeTask(taskItem: TodoItem): ToDoListScreen {
-        todoList.perform(clickTodoCheckBoxWithTitle(taskItem.title))
+    fun completeTask(taskItem: TodoItem?): ToDoListScreen {
+        todoList.perform(clickTodoCheckBoxWithTitle(taskItem!!.title))
         return this
     }
 

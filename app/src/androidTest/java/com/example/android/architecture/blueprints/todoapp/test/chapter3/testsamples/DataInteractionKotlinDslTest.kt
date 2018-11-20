@@ -2,13 +2,12 @@ package com.example.android.architecture.blueprints.todoapp.test.chapter3.testsa
 
 import android.R.id.*
 import android.preference.PreferenceActivity
-import android.support.design.R.id.design_menu_item_text
-import android.support.test.espresso.Espresso.onData
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.matcher.PreferenceMatchers.withKey
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
-import android.support.v14.preference.R.attr.summary
+import androidx.test.espresso.Espresso.onData
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.matcher.PreferenceMatchers.withKey
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import com.example.android.architecture.blueprints.todoapp.R.id.design_menu_item_text
 import com.example.android.architecture.blueprints.todoapp.R.string.settings_title
 import com.example.android.architecture.blueprints.todoapp.test.BaseTest
 import com.example.android.architecture.blueprints.todoapp.test.chapter3.*
@@ -16,6 +15,10 @@ import com.example.android.architecture.blueprints.todoapp.test.helpers.CommonEl
 import org.hamcrest.CoreMatchers.allOf
 import org.junit.Test
 
+/**
+ * Demonstrates DataInteraction usage with Kotlin Espresso DSL.
+ * See chapter3.EspressoDsl.kt for details.
+ */
 class DataInteractionKotlinDslTest : BaseTest() {
 
     //ViewInteractions and DataInteractions used in tests

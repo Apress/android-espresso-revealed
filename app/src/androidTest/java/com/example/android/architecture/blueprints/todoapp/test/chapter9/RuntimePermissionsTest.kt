@@ -1,13 +1,13 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter9
 
 import android.Manifest
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.*
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.test.rule.ActivityTestRule
-import android.support.test.rule.GrantPermissionRule
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.rule.ActivityTestRule
+import androidx.test.rule.GrantPermissionRule
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import com.example.android.architecture.blueprints.todoapp.test.chapter1.data.TestData
@@ -16,6 +16,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Showcases [GrantPermissionRule] functionality.
+ */
 @RunWith(AndroidJUnit4::class)
 class RuntimePermissionsTest {
 
@@ -23,7 +26,7 @@ class RuntimePermissionsTest {
      * Manifest.permission.CAMERA permission will be granted before the test run.
      */
     @get:Rule
-    var mRuntimePermissionRule = GrantPermissionRule
+    var mRuntimePermissionRule: GrantPermissionRule = GrantPermissionRule
             .grant(Manifest.permission.CAMERA)
 
     /**
@@ -37,7 +40,7 @@ class RuntimePermissionsTest {
         val toDoTitle = TestData.getToDoTitle()
         val toDoDescription = TestData.getToDoDescription()
 
-        // Adding new TO-DO.
+        // Add new TO-DO.
         onView(withId(R.id.fab_add_task)).perform(click())
         onView(withId(R.id.add_task_title))
                 .perform(typeText(toDoTitle), closeSoftKeyboard())
@@ -49,7 +52,7 @@ class RuntimePermissionsTest {
         onView(withId(R.id.picture)).perform(click())
         waitForElement(onView(withId(R.id.fab_edit_task_done))).perform(click())
 
-        // verifying new TO-DO with title is shown in the TO-DO list.
+        // Verify new TO-DO with title is shown in the TO-DO list.
         onView(withText(toDoTitle)).check(matches(isDisplayed()))
     }
 }

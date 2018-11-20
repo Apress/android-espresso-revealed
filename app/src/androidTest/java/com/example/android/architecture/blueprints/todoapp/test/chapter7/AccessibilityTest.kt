@@ -1,12 +1,12 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter7
 
 import android.preference.PreferenceActivity
-import android.support.test.espresso.Espresso.onData
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.accessibility.AccessibilityChecks
-import android.support.test.espresso.action.ViewActions.*
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.Espresso.onData
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.accessibility.AccessibilityChecks
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.test.BaseTest
 import com.example.android.architecture.blueprints.todoapp.test.chapter1.data.TestData
@@ -18,6 +18,9 @@ import org.hamcrest.Matchers.instanceOf
 import org.junit.BeforeClass
 import org.junit.Test
 
+/**
+ * Demonstrates how Accessibility tests are performed.
+ */
 class AccessibilityTest : BaseTest() {
 
     @Test
@@ -25,19 +28,19 @@ class AccessibilityTest : BaseTest() {
         val toDoTitle = TestData.getToDoTitle()
         val toDoDescription = TestData.getToDoDescription()
 
-        // adding new TO-DO
+        // Add new TO-DO.
         onView(withId(R.id.fab_add_task)).perform(click())
         onView(withId(R.id.add_task_title))
                 .perform(typeText(toDoTitle), closeSoftKeyboard())
         onView(withId(R.id.add_task_description))
                 .perform(typeText(toDoDescription), closeSoftKeyboard())
         onView(withId(R.id.fab_edit_task_done)).perform(click())
-        // verifying new TO-DO with title is shown in the TO-DO list
+        // Verify new TO-DO with title is shown in the TO-DO list.
         onView(withText(toDoTitle)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun opensWebViewSaple() {
+    fun opensWebViewSample() {
         openDrawer()
         onView(allOf(withId(R.id.design_menu_item_text),
                 withText(R.string.settings_title))).perform(click())
@@ -56,7 +59,7 @@ class AccessibilityTest : BaseTest() {
                     .setRunChecksFromRootView(true)
                     .setSuppressingResultMatcher(matchesViews(anyOf(
                             hasSibling(withId(R.id.menu_filter)),
-                            withChild(withChild(withId(android.support.design.R.id.snackbar_text))))))
+                            withChild(withChild(withId(R.id.snackbar_text))))))
                     .setThrowExceptionForErrors(false)
         }
     }

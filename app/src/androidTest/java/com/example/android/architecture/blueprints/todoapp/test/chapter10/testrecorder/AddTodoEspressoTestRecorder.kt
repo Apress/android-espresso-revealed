@@ -1,14 +1,14 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter10.testrecorder
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.*
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.test.filters.LargeTest
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
 import android.view.View
 import android.view.ViewGroup
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
+import androidx.test.rule.ActivityTestRule
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import org.hamcrest.Description
@@ -20,6 +20,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Espresso Test Recorder generated test with default parameters.
+ */
 @LargeTest
 @RunWith(AndroidJUnit4::class)
 class AddTodoEspressoTestRecorder {
@@ -29,7 +32,7 @@ class AddTodoEspressoTestRecorder {
     var mActivityTestRule = ActivityTestRule(TasksActivity::class.java)
 
     @Test
-    fun adTodoEspressoTestRecorder() {
+    fun addsTodoEspressoTestRecorder() {
         val floatingActionButton = onView(
                 allOf(withId(R.id.fab_add_task), withContentDescription("Add todo"),
                         childAtPosition(

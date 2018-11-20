@@ -1,10 +1,13 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter12.robots
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.*
-import android.support.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.example.android.architecture.blueprints.todoapp.R
 
+/**
+ * A Robot class for Add/Edit TO-DO item screen.
+ */
 fun addEditToDo(func: AddEditToDoRobot.() -> Unit) = AddEditToDoRobot().apply { func() }
 class AddEditToDoRobot {
 

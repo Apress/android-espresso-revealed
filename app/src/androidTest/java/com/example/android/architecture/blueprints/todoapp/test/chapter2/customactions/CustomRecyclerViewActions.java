@@ -1,10 +1,5 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter2.customactions;
 
-import android.support.test.espresso.PerformException;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.util.HumanReadables;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.CheckBox;
@@ -15,10 +10,16 @@ import com.example.android.architecture.blueprints.todoapp.tasks.TasksFragment;
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.action.ViewActions.actionWithAssertions;
-import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static org.hamcrest.Matchers.allOf;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.espresso.PerformException;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.util.HumanReadables;
+
+import static androidx.test.espresso.action.ViewActions.actionWithAssertions;
+import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static org.hamcrest.core.AllOf.allOf;
 
 /**
  * Demonstrates custom {@link RecyclerView} actions implementation.

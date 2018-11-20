@@ -2,13 +2,14 @@ package com.example.android.architecture.blueprints.todoapp.test.chapter5
 
 import android.app.Activity
 import android.app.Instrumentation
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.Espresso.openContextualActionModeOverflowMenu
-import android.support.test.espresso.intent.Intents.intending
-import android.support.test.espresso.intent.matcher.IntentMatchers.isInternal
-import android.support.test.espresso.intent.rule.IntentsTestRule
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.content.Intent
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu
+import androidx.test.espresso.intent.Intents.intending
+import androidx.test.espresso.intent.matcher.IntentMatchers.isInternal
+import androidx.test.espresso.intent.rule.IntentsTestRule
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import com.example.android.architecture.blueprints.todoapp.test.chapter1.data.TestData
@@ -19,6 +20,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+/**
+ * Demonstrates how to stub all external [Intent]s.
+ */
 class StubAllIntentsTest {
 
     @get:Rule

@@ -1,11 +1,11 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter11.screens
 
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.*
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
 import android.widget.ImageButton
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.test.chapter11.testdata.TodoItem
 import org.hamcrest.CoreMatchers.allOf
@@ -47,8 +47,8 @@ class AddEditToDoScreen {
     /**
      * Add new TO-DO flow
      */
-    fun addNewToDo(taskItem: TodoItem): ToDoListScreen {
-        typeToDoTitle(taskItem.title)
+    fun addNewToDo(taskItem: TodoItem?): ToDoListScreen {
+        typeToDoTitle(taskItem!!.title)
         typeToDoDescription(taskItem.description)
         clickDoneFabButton()
         return ToDoListScreen()
@@ -57,8 +57,8 @@ class AddEditToDoScreen {
     /**
      * Edit existing TO-DO flow
      */
-    fun updateToDo(taskItem: TodoItem): ToDoListScreen {
-        updateToDoTitle(taskItem.title)
+    fun updateToDo(taskItem: TodoItem?): ToDoListScreen {
+        updateToDoTitle(taskItem!!.title)
         updateToDoDescription(taskItem.description)
         clickDoneFabButton()
         return ToDoListScreen()

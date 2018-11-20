@@ -1,12 +1,12 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter5
 
 import android.content.Intent
-import android.support.test.espresso.intent.Intents
-import android.support.test.espresso.intent.Intents.intended
-import android.support.test.espresso.intent.matcher.IntentMatchers.*
-import android.support.test.espresso.intent.rule.IntentsTestRule
+import androidx.test.espresso.intent.Intents
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.matcher.IntentMatchers.*
+import androidx.test.espresso.intent.rule.IntentsTestRule
 import com.example.android.architecture.blueprints.todoapp.R
-import com.example.android.architecture.blueprints.todoapp.R.id.imageButton
+import com.example.android.architecture.blueprints.todoapp.R.id.getImage
 import com.example.android.architecture.blueprints.todoapp.addedittask.AddEditTaskActivity
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import com.example.android.architecture.blueprints.todoapp.test.chapter1.data.TestData
@@ -16,6 +16,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+/**
+ * Demonstrates how to stub image selection [Intent]s.
+ */
 class StubSelectImageIntentTest {
 
     private var toDoTitle = ""
@@ -26,7 +29,7 @@ class StubSelectImageIntentTest {
     private val taskTitleField = viewWithId(R.id.add_task_title)
     private val taskDescriptionField = viewWithId(R.id.add_task_description)
     private val editDoneFab = viewWithId(R.id.fab_edit_task_done)
-    private val addImageButton = viewWithId(imageButton)
+    private val addImageButton = viewWithId(getImage)
 
     @get:Rule
     var intentsTestRule = IntentsTestRule(TasksActivity::class.java)

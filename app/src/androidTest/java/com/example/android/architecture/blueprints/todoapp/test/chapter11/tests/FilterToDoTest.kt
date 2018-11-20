@@ -3,7 +3,6 @@ package com.example.android.architecture.blueprints.todoapp.test.chapter11.tests
 import com.example.android.architecture.blueprints.todoapp.test.BaseTest
 import com.example.android.architecture.blueprints.todoapp.test.chapter11.screens.ToDoListScreen
 import com.example.android.architecture.blueprints.todoapp.test.chapter11.testdata.TodoItem
-import org.junit.Before
 import org.junit.Test
 
 /**
@@ -53,11 +52,5 @@ class FilterToDoTest : BaseTest() {
     companion object {
         private var taskItem1 = TodoItem()
         private var taskItem2 = TodoItem()
-
-        @Before
-        fun setUp() {
-            taskItem1 = TodoItem.new
-            taskItem2 = TodoItem.new
-        }
     }
 }

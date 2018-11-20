@@ -20,15 +20,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.android.architecture.blueprints.todoapp.R;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -38,6 +40,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class StatisticsFragment extends Fragment implements StatisticsContract.View {
 
     private TextView mStatisticsTV;
+    private TextView seekBarTextView;
+    private SeekBar seekBar;
+    private String progressText;
 
     private StatisticsContract.Presenter mPresenter;
 
@@ -56,6 +61,33 @@ public class StatisticsFragment extends Fragment implements StatisticsContract.V
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.statistics_frag, container, false);
         mStatisticsTV = (TextView) root.findViewById(R.id.statistics);
+        seekBarTextView = (TextView) root.findViewById(R.id.seekBarTextView);
+        seekBar = (SeekBar) root.findViewById(R.id.simpleSeekBar);
+        progressText = getString(R.string.statisticsProgress);
+        seekBar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener()
+                {
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {}
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {}
+
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress,
+                                                  boolean fromUser){
+                        seekBarTextView.setText(String.format(progressText + " %d", seekBar.getProgress()));
+
+                    }
+                }
+        );
+
+        seekBar.setMax(50);
+        seekBar.setMin(0);
+        seekBar.setProgress(0);
+
+
+        seekBarTextView.setText(String.format(progressText + " %d", 0));
         showDialogWithDelay();
         return root;
     }

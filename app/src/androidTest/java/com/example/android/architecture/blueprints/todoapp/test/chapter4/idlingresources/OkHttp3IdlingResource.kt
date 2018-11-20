@@ -1,6 +1,7 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter4.idlingresources
 
-import android.support.test.espresso.IdlingResource
+import androidx.test.espresso.IdlingResource
+import androidx.test.espresso.IdlingRegistry
 import okhttp3.OkHttpClient
 
 /**

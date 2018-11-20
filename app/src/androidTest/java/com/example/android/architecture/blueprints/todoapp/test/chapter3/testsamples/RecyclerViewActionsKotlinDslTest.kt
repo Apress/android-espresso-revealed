@@ -1,8 +1,8 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter3.testsamples
 
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.action.ViewActions.scrollTo
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.scrollTo
 import com.example.android.architecture.blueprints.todoapp.R.id.*
 import com.example.android.architecture.blueprints.todoapp.R.string.successfully_saved_task_message
 import com.example.android.architecture.blueprints.todoapp.test.BaseTest
@@ -11,6 +11,10 @@ import com.example.android.architecture.blueprints.todoapp.test.chapter2.customm
 import com.example.android.architecture.blueprints.todoapp.test.chapter3.*
 import org.junit.Test
 
+/**
+ * Demonstrates RecyclerView actions usage with Kotlin Espresso DSL.
+ * See chapter3.EspressoDsl.kt for details.
+ */
 class RecyclerViewActionsKotlinDslTest : BaseTest() {
 
     //ViewInteractions used in tests

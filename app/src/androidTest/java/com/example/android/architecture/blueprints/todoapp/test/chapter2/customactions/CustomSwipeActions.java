@@ -1,15 +1,16 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter2.customactions;
 
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.action.CoordinatesProvider;
-import android.support.test.espresso.action.GeneralLocation;
-import android.support.test.espresso.action.GeneralSwipeAction;
-import android.support.test.espresso.action.Press;
 import android.view.View;
 
 import com.example.android.architecture.blueprints.todoapp.test.chapter2.customswipe.CustomSwipe;
 
-import static android.support.test.espresso.action.ViewActions.actionWithAssertions;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.action.CoordinatesProvider;
+import androidx.test.espresso.action.GeneralLocation;
+import androidx.test.espresso.action.GeneralSwipeAction;
+import androidx.test.espresso.action.Press;
+
+import static androidx.test.espresso.action.ViewActions.actionWithAssertions;
 
 /**
  * Implements fully customised swipe action.

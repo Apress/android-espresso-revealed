@@ -16,11 +16,12 @@
 
 package com.example.android.architecture.blueprints.todoapp.data.source;
 
-import android.support.annotation.NonNull;
 
 import com.example.android.architecture.blueprints.todoapp.data.Task;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Main entry point for accessing tasks data.

@@ -7,15 +7,15 @@ import com.example.android.architecture.blueprints.todoapp.test.chapter1.data.Te
 import org.junit.Before;
 import org.junit.Test;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.replaceText;
-import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.not;
 
@@ -24,11 +24,11 @@ import static org.hamcrest.CoreMatchers.not;
  */
 public class ViewActionsTest extends BaseTest {
 
-    private String toDoTitle = TestData.getToDoTitle();
-    private String toDoDescription = TestData.getToDoDescription();
+    private String toDoTitle = "";
+    private String toDoDescription = "";
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         super.setUp();
         toDoTitle = TestData.getToDoTitle();
         toDoDescription = TestData.getToDoDescription();

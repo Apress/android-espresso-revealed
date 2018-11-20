@@ -6,6 +6,9 @@ import com.example.android.architecture.blueprints.todoapp.test.chapter12.robots
 import org.junit.Before
 import org.junit.Test
 
+/**
+ * Contains tests that use both Builder and Test Robot patterns.
+ */
 class RobotsTest : BaseTest() {
 
     private var toDoTitle = ""
@@ -18,6 +21,9 @@ class RobotsTest : BaseTest() {
         toDoDescription = TestData.getToDoDescription()
     }
 
+    /**
+     * Builder pattern test sample.
+     */
     @Test
     fun robotChecksToDoStateChangeBuilder() {
         // TO-DO list screen.
@@ -39,6 +45,9 @@ class RobotsTest : BaseTest() {
                 .verifyToDoShown(toDoTitle)
     }
 
+    /**
+     * Test Robot pattern test sample where each Robot is separated.
+     */
     @Test
     fun robotChecksToDoStateChangeRobotsSeparation() {
         toDoList {

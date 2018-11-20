@@ -1,12 +1,13 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter4.conditionwatchers
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.NoMatchingViewException
-import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+
 import android.view.View
 import android.widget.TextView
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.NoMatchingViewException
+import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.azimolabs.conditionwatcher.ConditionWatcher
 import com.azimolabs.conditionwatcher.Instruction
 import com.example.android.architecture.blueprints.todoapp.R
@@ -14,6 +15,9 @@ import com.example.android.architecture.blueprints.todoapp.tasks.TasksFragment
 import com.example.android.architecture.blueprints.todoapp.test.helpers.Utils.currentActivity
 import org.hamcrest.Matcher
 
+/**
+ * Single place for all the [ConditionWatcher] functions used in sample project.
+ */
 object ConditionWatchers {
 
     private val TIMEOUT_LIMIT = 20000
@@ -46,7 +50,7 @@ object ConditionWatchers {
                     if (currentFragment is TasksFragment) {
                         val contentView = fragmentActivity.window.decorView.findViewById<View>(android.R.id.content)
                         if (contentView != null) {
-                            val snackBarTextView = contentView.findViewById<TextView>(android.support.design.R.id.snackbar_text)
+                            val snackBarTextView = contentView.findViewById<TextView>(R.id.snackbar_text)
                             return snackBarTextView == null
                         }
                     }
@@ -56,6 +60,12 @@ object ConditionWatchers {
         })
     }
 
+    /**
+     * Waits for a [View], located by [ViewInteraction], to be displayed on the screen.
+     *
+     * @param interaction - [ViewInteraction] that locatea a view.
+     * @param timeout - amount of time in milliseconds to wait for condition.
+     */
     @Throws(Exception::class)
     @JvmStatic
     fun waitForElement(
@@ -81,6 +91,12 @@ object ConditionWatchers {
         return interaction
     }
 
+    /**
+     * Waits for a [View], located by [ViewInteraction] to be fully visible on the screen.
+     *
+     * @param interaction - [ViewInteraction] that locates a view.
+     * @param timeout - amount of time in milliseconds to wait for condition.
+     */
     @Throws(Exception::class)
     fun waitForElementFullyVisible(
             interaction: ViewInteraction,
@@ -105,11 +121,18 @@ object ConditionWatchers {
         return interaction
     }
 
+    /**
+     * Waits for a [View], located by [ViewInteraction], to be gone.
+     *
+     * @param interaction - [ViewInteraction] that locates a view.
+     * @param timeout - amount of time in milliseconds to wait for condition.
+     * @return [ViewInteraction] for located view.
+     */
     @Throws(Exception::class)
     @JvmStatic
     fun waitForElementIsGone(
             interaction: ViewInteraction,
-            timeout: Int): ViewInteraction {
+            timeout: Int = 5000): ViewInteraction {
         ConditionWatcher.setTimeoutLimit(timeout)
         ConditionWatcher.waitForCondition(object : Instruction() {
 
@@ -130,11 +153,17 @@ object ConditionWatchers {
         return interaction
     }
 
+    /**
+     * Waits for [View], located by Matcher<View> to be gone.
+     *
+     * @param viewMatcher - Matcher<View> that locates a view.
+     * @param timeout - amount of time in milliseconds to wait for condition.
+     */
     @Throws(Exception::class)
     @JvmStatic
     fun waitForElementIsGone(
             viewMatcher: Matcher<View>,
-            timeout: Int = 2000) {
+            timeout: Int = 5000) {
         ConditionWatcher.setTimeoutLimit(timeout)
         ConditionWatcher.waitForCondition(object : Instruction() {
 
@@ -154,6 +183,13 @@ object ConditionWatchers {
         })
     }
 
+    /**
+     * Waits for View, located by Matcher<View>, to be gone.
+     *
+     * @param interaction - Matcher<View> that locates a view.
+     * @param timeout - amount of time in milliseconds to wait for condition.
+     * @return usually ViewInteraction of the parent of the view that should be gone.
+     */
     @Throws(Exception::class)
     fun waitForElementIsGone(
             interaction: ViewInteraction,

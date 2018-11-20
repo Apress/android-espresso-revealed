@@ -1,25 +1,28 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter6
 
 import android.preference.PreferenceActivity
-import android.support.test.espresso.Espresso.onData
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
-import android.support.test.espresso.web.assertion.WebViewAssertions.webMatches
-import android.support.test.espresso.web.sugar.Web.onWebView
-import android.support.test.espresso.web.webdriver.DriverAtoms.*
-import android.support.test.espresso.web.webdriver.Locator
 import android.view.KeyEvent
+import androidx.test.espresso.Espresso.onData
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.web.assertion.WebViewAssertions.webMatches
+import androidx.test.espresso.web.sugar.Web.onWebView
+import androidx.test.espresso.web.webdriver.DriverAtoms.*
+import androidx.test.espresso.web.webdriver.Locator
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.test.BaseTest
 import com.example.android.architecture.blueprints.todoapp.test.chapter3.click
-import com.example.android.architecture.blueprints.todoapp.test.chapter3.pressKeyAndSleep
+import com.example.android.architecture.blueprints.todoapp.test.chapter3.sleepAndPressKey
 import com.example.android.architecture.blueprints.todoapp.test.helpers.CommonElements.openDrawer
 import org.hamcrest.CoreMatchers.*
 import org.junit.Test
 
+/**
+ * Contains tests for a WebView pages inside the TO-DO sample app.
+ */
 class WebViewTest : BaseTest() {
 
     @Test
@@ -37,7 +40,7 @@ class WebViewTest : BaseTest() {
                 .withElement(findElement(Locator.ID, "text_input"))
                 .perform(webKeys("Espresso WebView testing"))
                 // Find button by id and click.
-                .withElement(findElement(Locator.ID, "submitBtn"))
+                .withElement(findElement(Locator.ID, "submit_btn"))
                 .perform(webClick())
                 // Find element by id and check its text.
                 .withElement(findElement(Locator.ID, "response"))
@@ -99,6 +102,9 @@ class WebViewTest : BaseTest() {
                 .check(webMatches(getText(), equalTo("Text from modal")))
     }
 
+    /**
+     * This test should fail intentionally.
+     */
     @Test
     fun failsToClickSelectDropDown() {
         openDrawer()
@@ -113,6 +119,7 @@ class WebViewTest : BaseTest() {
                 .withElement(findElement(Locator.ID, "selection_id"))
                 .perform(webClick())
                 // Select list is not shown, so test fails.
+                .withElement(findElement(Locator.ID, "selection_result"))
                 .check(webMatches(getText(), equalTo("Item 3")))
     }
 
@@ -127,7 +134,7 @@ class WebViewTest : BaseTest() {
                 .perform(click())
         onView(withId(R.id.web_view))
                 // Send TAB keys as many times as needed to reach the "select".
-                .pressKeyAndSleep(KeyEvent.KEYCODE_TAB, 300, 7)
+                .sleepAndPressKey(KeyEvent.KEYCODE_TAB, 500, 6)
                 // Send SPACE key to expand "select".
                 .perform(ViewActions.pressKey(KeyEvent.KEYCODE_SPACE))
         /**

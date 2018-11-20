@@ -154,5 +154,6 @@
     <string name="name_hint">Type email</string>
     <string name="bookmark_this_item">Bookmark this item</string>
     <string name="add_task_empty_title">Title cannot be empty!</string>
+    <string name="statisticsProgress">Progress:</string>
 
 </resources>

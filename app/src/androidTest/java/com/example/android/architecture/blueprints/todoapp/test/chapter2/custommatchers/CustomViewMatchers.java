@@ -1,6 +1,5 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter2.custommatchers;
 
-import android.support.test.espresso.matcher.BoundedMatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -11,8 +10,11 @@ import com.example.android.architecture.blueprints.todoapp.R;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
+import androidx.test.espresso.matcher.BoundedMatcher;
+import androidx.test.espresso.matcher.ViewMatchers;
+
 /**
- * Shows custom {@link android.support.test.espresso.matcher.ViewMatchers} samples.
+ * Shows custom {@link ViewMatchers} samples.
  */
 public class CustomViewMatchers {
 
@@ -34,7 +36,7 @@ public class CustomViewMatchers {
 
     /**
      * Matches EditText hint by specific text color.
-     * @param expectedColor - expected color code, like {@link android.graphics.Color.RED}
+     * @param expectedColor - expected color code
      * @return {@link Matcher<View>}
      */
     public static Matcher<View> withHintColor(final int expectedColor) {

@@ -1,14 +1,14 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter3.testsamples
 
 import android.preference.PreferenceActivity
-import android.support.test.espresso.Espresso.onData
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.action.ViewActions.replaceText
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.PreferenceMatchers.withKey
-import android.support.test.espresso.matcher.ViewMatchers.*
 import android.view.View
+import androidx.test.espresso.Espresso.onData
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.replaceText
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.PreferenceMatchers.withKey
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.test.BaseTest
 import com.example.android.architecture.blueprints.todoapp.test.helpers.CommonElements.openDrawer
@@ -16,6 +16,9 @@ import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.Test
 
+/**
+ * Demonstrates DataInteraction usage in Kotlin.
+ */
 class DataInteractionsKotlinTest : BaseTest() {
 
     @Test

@@ -5,10 +5,13 @@ import android.app.Instrumentation
 import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
-import android.support.test.InstrumentationRegistry
+import androidx.test.platform.app.InstrumentationRegistry
 import java.io.File
 import java.io.FileOutputStream
 
+/**
+ * Keeps functions that are used to create needed [Intent]s.
+ */
 object IntentHelper {
 
     /**
@@ -17,7 +20,7 @@ object IntentHelper {
      */
     fun createImageResultFromDrawable(drawable: Int): Instrumentation.ActivityResult {
         val resultIntent = Intent()
-        val testResources = InstrumentationRegistry.getContext().resources
+        val testResources = InstrumentationRegistry.getInstrumentation().context.resources
 
         // Build a stubbed result from drawable image.
         resultIntent.data = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE
@@ -35,8 +38,8 @@ object IntentHelper {
         val resultIntent = Intent()
 
         // Declare variables for test and application context.
-        val testContext = InstrumentationRegistry.getContext()
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val testContext = InstrumentationRegistry.getInstrumentation().context
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         /**
          * For some reason the following exception is thrown during test run if we use testContext:
          * java.io.FileNotFoundException: /data/user/0/com.example.android.architecture.blueprints.todoapp.mock.test/cache/todo_image_temp.png (Permission denied).

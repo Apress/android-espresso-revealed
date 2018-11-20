@@ -1,8 +1,5 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter2.customactions;
 
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,8 +9,13 @@ import com.example.android.architecture.blueprints.todoapp.test.chapter11.testda
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+
+import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static junit.framework.Assert.assertFalse;
+
 
 public class CustomViewActions {
 

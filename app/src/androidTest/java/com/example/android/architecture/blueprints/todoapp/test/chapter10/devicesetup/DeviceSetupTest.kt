@@ -1,14 +1,11 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter10.devicesetup
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions
-import android.support.test.espresso.matcher.ViewMatchers
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.uiautomator.UiDevice
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.UiDevice
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.test.BaseTest
 import com.example.android.architecture.blueprints.todoapp.test.chapter1.data.TestData
@@ -34,22 +31,21 @@ class DeviceSetupTest : BaseTest() {
     @Test
     fun addsNewToDo() {
         // Adding new TO-DO.
-        Espresso.onView(ViewMatchers.withId(R.id.fab_add_task)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.add_task_title))
-                .perform(ViewActions.typeText(toDoTitle), ViewActions.closeSoftKeyboard())
-        Espresso.onView(ViewMatchers.withId(R.id.add_task_description))
-                .perform(ViewActions.typeText(toDoDescription), ViewActions.closeSoftKeyboard())
-        onView(withId(R.id.getImage)).perform(click())
-        Espresso.onView(ViewMatchers.withId(R.id.fab_edit_task_done)).perform(ViewActions.click())
+        onView(withId(R.id.fab_add_task)).perform(click())
+        onView(withId(R.id.add_task_title))
+                .perform(typeText(toDoTitle), closeSoftKeyboard())
+        onView(withId(R.id.add_task_description))
+                .perform(typeText(toDoDescription), closeSoftKeyboard())
+        onView(withId(R.id.fab_edit_task_done)).perform(click())
         // Verifying new TO-DO with title is shown in the TO-DO list.
-        Espresso.onView(ViewMatchers.withText(toDoTitle)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        onView(withText(toDoTitle)).check(matches(isDisplayed()))
     }
 
     companion object {
         /**
          * Set of shell commands that should be run before test
          * which turn off System animations, increase Accessibility Touch & hold delay
-         * and hide Virtual keyboard appearance.
+         * and disable Virtual keyboard appearance.
          */
         @BeforeClass
         @JvmStatic

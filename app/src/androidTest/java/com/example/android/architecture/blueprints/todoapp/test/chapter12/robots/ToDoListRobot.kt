@@ -1,10 +1,10 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter12.robots
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.Espresso.openContextualActionModeOverflowMenu
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.android.architecture.blueprints.todoapp.R
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
@@ -16,7 +16,7 @@ import org.hamcrest.CoreMatchers.not
 fun toDoList(func: ToDoListRobot.() -> Unit) = ToDoListRobot().apply { func() }
 
 /**
- * TODO
+ * Robot pattern applied to TO-DO list screen.
  */
 class ToDoListRobot {
 

@@ -1,8 +1,5 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter2.custommatchers;
 
-import android.support.test.espresso.intent.Checks;
-import android.support.test.espresso.matcher.BoundedMatcher;
-import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.example.android.architecture.blueprints.todoapp.R;
@@ -12,14 +9,21 @@ import com.example.android.architecture.blueprints.todoapp.test.chapter11.testda
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.espresso.matcher.BoundedMatcher;
+import androidx.test.internal.util.Checks;
+
 import static com.example.android.architecture.blueprints.todoapp.tasks.TasksFragment.TasksAdapter;
 
+/**
+ * RecyclerView matchers that match TO-DO items in items list.
+ */
 public class RecyclerViewMatchers {
 
     public static Matcher<RecyclerView.ViewHolder> withTitle(final String taskTitle) {
         Checks.checkNotNull(taskTitle);
 
-        return new BoundedMatcher<RecyclerView.ViewHolder, TasksFragment.TasksAdapter.ViewHolder>(
+        return new BoundedMatcher<RecyclerView.ViewHolder, TasksAdapter.ViewHolder>(
                 TasksAdapter.ViewHolder.class) {
             @Override
             protected boolean matchesSafely(TasksAdapter.ViewHolder holder) {

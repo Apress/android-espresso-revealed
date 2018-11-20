@@ -1,26 +1,31 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter2.customactions;
 
-import android.support.test.espresso.PerformException;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.action.CoordinatesProvider;
-import android.support.test.espresso.action.GeneralLocation;
-import android.support.test.espresso.action.PrecisionDescriber;
-import android.support.test.espresso.action.Press;
-import android.support.test.espresso.action.Tap;
-import android.support.test.espresso.action.Tapper;
-import android.support.test.espresso.core.internal.deps.guava.base.Optional;
-import android.support.test.espresso.util.HumanReadables;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.webkit.WebView;
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.core.internal.deps.guava.base.Preconditions.checkNotNull;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayingAtLeast;
-import static org.hamcrest.CoreMatchers.allOf;
+import androidx.test.espresso.PerformException;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.action.CoordinatesProvider;
+import androidx.test.espresso.action.GeneralLocation;
+import androidx.test.espresso.action.PrecisionDescriber;
+import androidx.test.espresso.action.Press;
+import androidx.test.espresso.action.Tap;
+import androidx.test.espresso.action.Tapper;
+import androidx.test.espresso.core.internal.deps.guava.base.Optional;
+import androidx.test.espresso.util.HumanReadables;
 
+import static androidx.core.util.Preconditions.checkNotNull;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayingAtLeast;
+import static org.hamcrest.core.AllOf.allOf;
+
+/**
+ * Class that holds a copy of Espresso ViewActions.click() and allows to perform
+ * clicks on a view with different visibility.
+ */
 public final class CustomClickAction implements ViewAction {
 
     private final CoordinatesProvider coordinatesProvider;

@@ -3,16 +3,17 @@ package com.example.android.architecture.blueprints.todoapp.test.chapter9
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
-import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.*
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
-import android.support.test.uiautomator.By
-import android.support.test.uiautomator.UiDevice
-import android.support.test.uiautomator.Until
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.rule.ActivityTestRule
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.Until
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import com.example.android.architecture.blueprints.todoapp.test.chapter1.data.TestData
@@ -22,13 +23,16 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Demonstrates how UI Automator API can be used to deal with permission dialogs.
+ */
 @RunWith(AndroidJUnit4::class)
 class RuntimePermissionsUiAutomatorTest {
 
     private val instrumentation = InstrumentationRegistry.getInstrumentation()
     private val uiDevice: UiDevice = UiDevice.getInstance(instrumentation)
-    private val todoAppPackageName = InstrumentationRegistry.getTargetContext().packageName
-    private val testContext = InstrumentationRegistry.getContext()
+    private val todoAppPackageName = InstrumentationRegistry.getInstrumentation().targetContext.packageName
+    private val testContext = InstrumentationRegistry.getInstrumentation().context
 
     /**
      * Provided activity will be launched before each test.
@@ -40,12 +44,12 @@ class RuntimePermissionsUiAutomatorTest {
     fun takesCameraPicture() {
         val toDoTitle = TestData.getToDoTitle()
 
-        // Adding new TO-DO.
+        // Add new TO-DO.
         onView(withId(R.id.fab_add_task)).perform(click())
         onView(withId(R.id.add_task_title))
                 .perform(typeText(toDoTitle), closeSoftKeyboard())
 
-        // Clicking on camera button to trigger the permission dialog.
+        // Click on camera button to trigger the permission dialog.
         onView(withId(R.id.makePhoto)).perform(click())
 
         // UIAutomator - click permission dialog ALLOW button.
@@ -54,7 +58,7 @@ class RuntimePermissionsUiAutomatorTest {
         onView(withId(R.id.picture)).perform(click())
         waitForElement(onView(withId(R.id.fab_edit_task_done))).perform(click())
 
-        // verifying new TO-DO with title is shown in the TO-DO list.
+        // Verify new TO-DO with title is shown in the TO-DO list.
         onView(withText(toDoTitle)).check(matches(isDisplayed()))
     }
 
@@ -86,6 +90,8 @@ class RuntimePermissionsUiAutomatorTest {
         val toDoTitle = TestData.getToDoTitle()
 
         onView(withId(R.id.fab_add_task)).perform(click())
+        // Since the title EditText has focus keyboard appears and we have to close it
+        Espresso.closeSoftKeyboard()
         onView(withId(R.id.makePhoto)).perform(click())
 
         uiDevice.findObject(By.res("com.android.packageinstaller:id/permission_deny_button"))
@@ -102,7 +108,7 @@ class RuntimePermissionsUiAutomatorTest {
                 .findObject(By.res("com.android.packageinstaller:id/permission_deny_button"))
                 .click()
 
-        // Clicking camera button to trigger permission dialog.
+        // Click camera button to trigger permission dialog.
         onView(withId(R.id.makePhoto)).perform(click())
         onView(withId(R.id.snackbar_text))
                 .check(matches(allOf(isDisplayed(), withText("Camera unavailable"))))
@@ -121,22 +127,26 @@ class RuntimePermissionsUiAutomatorTest {
     }
 
     private fun sendApplicationSettingsIntent() {
+
         // Create intent to open To-Do application settings.
         val intent = Intent()
         intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
         val uri = Uri.fromParts("package", todoAppPackageName, null)
         intent.data = uri
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         testContext.startActivity(intent)
     }
 
     private fun launchBackToDoApplication() {
+
         // Create intent to open To-Do application.
         val intent = testContext.packageManager.getLaunchIntentForPackage(todoAppPackageName)
-        InstrumentationRegistry.getContext().startActivity(intent)
+        InstrumentationRegistry.getInstrumentation().context.startActivity(intent)
     }
 
     private fun enableCameraPermission() {
+
         // Wait for application Settings to appear
         uiDevice.wait(Until.hasObject(By.pkg("com.android.settings")), 5000)
 

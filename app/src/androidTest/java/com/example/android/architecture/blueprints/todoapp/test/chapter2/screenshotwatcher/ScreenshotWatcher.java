@@ -1,14 +1,18 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter2.screenshotwatcher;
 
 import android.graphics.Bitmap;
-import android.support.test.runner.screenshot.ScreenCapture;
-import android.support.test.runner.screenshot.Screenshot;
 
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
 import java.io.IOException;
 
+import androidx.test.runner.screenshot.ScreenCapture;
+import androidx.test.runner.screenshot.Screenshot;
+
+/**
+ * The rule which captures screenshot on test failure.
+ */
 public class ScreenshotWatcher extends TestWatcher {
 
     @Override

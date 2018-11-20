@@ -16,10 +16,11 @@
 
 package com.example.android.architecture.blueprints.todoapp.util;
 
-import android.support.test.espresso.IdlingResource;
 import android.util.Log;
 
 import java.util.concurrent.atomic.AtomicInteger;
+
+import androidx.test.espresso.IdlingResource;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -39,7 +40,7 @@ public final class SimpleCountingIdlingResource implements IdlingResource {
     private final AtomicInteger counter = new AtomicInteger(0);
 
     // written from main thread, read from any thread.
-    private volatile ResourceCallback resourceCallback;
+    private volatile IdlingResource.ResourceCallback resourceCallback;
 
     /**
      * Creates a SimpleCountingIdlingResource
