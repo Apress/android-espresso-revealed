@@ -1,5 +1,19 @@
-# android-espresso-revealed
+# Apress Source Code
 
+This repository accompanies [*Android Espresso Revealed*](https://www.apress.com/9781484243145) by Denys Zelenchuk (Apress, 2019).
+
+[comment]: #cover
+![Cover image](9781484243145.jpg)
+
+Download the files as a zip using the green button, or clone the repository to your machine using Git.
+
+## Releases
+
+Release v1.0 corresponds to the code in the published book, without corrections or updates.
+
+## Contributions
+
+See the file Contributing.md for more information on how you can contribute to this repository.
 A sample TO-DO application project forked from the [googlesamples android-architecture](https://github.com/googlesamples/android-architecture/tree/master) project and modified in a way to show you most of the Espresso use cases.
 
 ### Content:
