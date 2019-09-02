@@ -114,7 +114,7 @@ dependencies {
     androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:$uiautomatorVersion"
 
     // Squareup dependencies
-    androidTestImplementation "com.squareup.okhttp3:okhttp:3.11.0"
+    androidTestImplementation "com.squareup.okhttp3:okhttp:3.13.1"
     implementation "com.squareup.picasso:picasso:2.5.2"
 
     // ConditionalWatcher dependency
