@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '29.0.2'
 
     defaultConfig {
         applicationId "com.example.android.architecture.blueprints.todoapp"
@@ -85,42 +85,43 @@ android {
  */
 dependencies {
     // App's dependencies, including test
-    implementation 'androidx.preference:preference:1.1.0-alpha01'
+    implementation 'androidx.preference:preference:1.1.0-rc01'
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.1.0-alpha01'
+    implementation 'com.google.android.material:material:1.1.0-alpha09'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.test.espresso:espresso-idling-resource:3.1.0'
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
     implementation ("com.google.guava:guava:$rootProject.guavaVersion") {
         exclude group: "org.checkerframework", module: "checker-compat-qual"
         exclude group: "com.google.errorprone", module: "error_prone_annotations"
+        exclude group: "com.google.guava", module: "failureaccess"
     }
-    implementation 'androidx.room:room-runtime:2.1.0-alpha02'
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
     implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.0.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha02'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
+    annotationProcessor "androidx.room:room-compiler:$rootProject.roomVersion"
 
     // AndroidX Test Orchestrator
-    androidTestUtil 'androidx.test:orchestrator:1.1.0'
+    androidTestUtil "androidx.test:orchestrator:$rootProject.androidXTestVersion"
 
     // AndroidX Test runner and rules
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test:rules:1.1.0'
-    androidTestImplementation 'androidx.room:room-testing:2.1.0-alpha02'
+    androidTestImplementation "androidx.test:runner:$rootProject.runnerVersionAndroidX"
+    androidTestImplementation "androidx.test:rules:$rootProject.rulesVersionAndroidX"
+    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
     // Espresso UI Testing
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-web:3.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.1.0'
-    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.1.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.0.0'
-    androidTestImplementation 'androidx.test:core:1.0.0'
-    androidTestImplementation 'androidx.test.ext:truth:1.0.0'
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersionAndroidX"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersionAndroidX"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersionAndroidX"
+    androidTestImplementation "androidx.test.espresso:espresso-web:$rootProject.espressoVersionAndroidX"
+    androidTestImplementation "androidx.test.espresso:espresso-accessibility:$rootProject.espressoVersionAndroidX"
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$rootProject.espressoVersionAndroidX"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.jUnitVersion"
+    androidTestImplementation "androidx.test:core:$rootProject.androidXTestVersion"
+    androidTestImplementation "androidx.test.ext:truth:$rootProject.androidXTestVersion"
 
     // Accessibility and UI Automator dependencies
     androidTestImplementation "com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:$rootProject.accessibilityFramework"

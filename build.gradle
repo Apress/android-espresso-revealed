@@ -5,8 +5,8 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.10"
+        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -28,9 +28,9 @@ task clean(type: Delete) {
 ext {
     // Sdk and tools
     minSdkVersion = 26
-    targetSdkVersion = 28
-    compileSdkVersion = 28
-    buildToolsVersion = '27.0.3'
+    targetSdkVersion = 29
+    compileSdkVersion = 29
+    buildToolsVersion = '29.0.2'
 
     // App dependencies
     supportLibraryVersion = '28.0.0'
@@ -40,12 +40,14 @@ ext {
     espressoVersion = '3.0.2'
     accessibilityFramework = '2.1'
     uiautomatorVersion = '2.1.3'
-    roomVersion = "1.1.1"
+    roomVersion = "2.2.0-beta01"
+    jUnitVersion = "1.1.1"
 
     // App dependencies AndroidX
-    runnerVersionAndroidX = '1.1.0'
-    rulesVersionAndroidX = '1.1.0'
-    espressoVersionAndroidX = '3.1.0'
+    runnerVersionAndroidX = '1.2.0'
+    rulesVersionAndroidX = '1.2.0'
+    espressoVersionAndroidX = '3.2.0'
     uiautomatorVersionAndroidX = '2.2.0-alpha1'
-    testOrchestratorAndroidX  = '1.1.0'
+    testOrchestratorAndroidX  = '1.2.0'
+    androidXTestVersion  = '1.2.0'
 }
