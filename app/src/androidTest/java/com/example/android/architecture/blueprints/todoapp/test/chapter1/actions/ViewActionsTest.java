@@ -13,6 +13,7 @@ import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -73,8 +74,8 @@ public class ViewActionsTest extends BaseTest {
 
     @Test
     public void editsToDo() {
-        String editedToDoTitle = "Edited "+ toDoTitle;
-        String editedToDoDescription = "Edited "+ toDoDescription;
+        String editedToDoTitle = "Edited " + toDoTitle;
+        String editedToDoDescription = "Edited " + toDoDescription;
 
         // Add new TO-DO.
         onView(withId(R.id.fab_add_task)).perform(click());
@@ -95,5 +96,34 @@ public class ViewActionsTest extends BaseTest {
 
         // Verify edited TO-DO is shown.
         onView(withText(editedToDoTitle)).check(matches(isDisplayed()));
+    }
+
+    // Exercise 2.1
+    @Test
+    public void addNewToDoAndMarkAsCompleted() {
+        onView(withId(R.id.fab_add_task)).perform(click());
+        onView(withId(R.id.add_task_title))
+                .perform(typeText(toDoTitle), closeSoftKeyboard());
+        onView(withId(R.id.add_task_description))
+                .perform(typeText(toDoDescription), closeSoftKeyboard());
+        onView(withId(R.id.fab_edit_task_done)).perform(click());
+        onView(withId(R.id.todo_complete)).perform(click());
+        onView(withId(R.id.todo_complete)).check(matches(isChecked()));
+    }
+
+    // Exercise 2.2
+    @Test
+    public void addNewToDoAndDeleteIt() {
+        onView(withId(R.id.fab_add_task)).perform(click());
+        onView(withId(R.id.add_task_title))
+                .perform(typeText(toDoTitle), closeSoftKeyboard());
+        onView(withId(R.id.fab_edit_task_done)).perform(click());
+        onView(withText(toDoTitle)).perform(click());
+        onView(withId(R.id.menu_delete)).perform(click());
+
+        //onView(withId(R.id.noTasksMain))
+        //        .check(matches(allOf(withText(R.string.no_tasks_all), isDisplayed())));
+        onView(allOf((withId(R.id.noTasksMain)), withText("You have no TO-DOs!")))
+                .check(matches(isDisplayed()));
     }
 }
