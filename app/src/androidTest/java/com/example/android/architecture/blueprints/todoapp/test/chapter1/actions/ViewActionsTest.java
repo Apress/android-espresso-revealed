@@ -75,8 +75,8 @@ public class ViewActionsTest extends BaseTest {
 
     @Test
     public void editsToDo() {
-        String editedToDoTitle = "Edited "+ toDoTitle;
-        String editedToDoDescription = "Edited "+ toDoDescription;
+        String editedToDoTitle = "Edited " + toDoTitle;
+        String editedToDoDescription = "Edited " + toDoDescription;
 
         // Add new TO-DO.
         onView(withId(R.id.fab_add_task)).perform(click());
@@ -100,8 +100,7 @@ public class ViewActionsTest extends BaseTest {
     }
 
     @Test
-    public void completeNewToDo()
-    {       // Add new TO-DO.
+    public void completeNewToDo() {       // Add new TO-DO.
         onView(withId(R.id.fab_add_task)).perform(click());
         onView(withId(R.id.add_task_title))
                 .perform(typeText(toDoTitle), closeSoftKeyboard());
@@ -135,4 +134,4 @@ public class ViewActionsTest extends BaseTest {
         // Verify that All TO-DOs list is empty.
         onView(allOf(withText("You have no TO-DOs!"), withId(R.id.noTasksIcon))).check(matches(isDisplayed()));
     }
-    }
+}
