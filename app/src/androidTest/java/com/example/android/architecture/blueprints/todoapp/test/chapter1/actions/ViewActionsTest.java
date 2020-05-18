@@ -13,8 +13,10 @@ import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withInputType;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.not;
@@ -96,4 +98,41 @@ public class ViewActionsTest extends BaseTest {
         // Verify edited TO-DO is shown.
         onView(withText(editedToDoTitle)).check(matches(isDisplayed()));
     }
-}
+
+    @Test
+    public void completeNewToDo()
+    {       // Add new TO-DO.
+        onView(withId(R.id.fab_add_task)).perform(click());
+        onView(withId(R.id.add_task_title))
+                .perform(typeText(toDoTitle), closeSoftKeyboard());
+        onView(withId(R.id.add_task_description))
+                .perform(typeText(toDoDescription), closeSoftKeyboard());
+        onView(withId(R.id.fab_edit_task_done)).perform(click());
+
+        // Mark TO-DO as completed.
+        onView(withId(R.id.todo_complete)).perform(click());
+
+        // Verify that TO-DO checkbox is completed.
+        onView(withId(R.id.todo_complete)).check(matches(isChecked()));
+    }
+
+    @Test
+    public void deleteNewToDO() {
+        // Add new TO-DO.
+        onView(withId(R.id.fab_add_task)).perform(click());
+        onView(withId(R.id.add_task_title))
+                .perform(typeText(toDoTitle), closeSoftKeyboard());
+        onView(withId(R.id.add_task_description))
+                .perform(typeText(toDoDescription), closeSoftKeyboard());
+        onView(withId(R.id.fab_edit_task_done)).perform(click());
+
+        // Open created TO-DO.
+        onView(withText(toDoTitle)).perform(click());
+
+        // Delete created TO-DO.
+        onView(withId(R.id.menu_delete)).perform(click());
+
+        // Verify that All TO-DOs list is empty.
+        onView(allOf(withText("You have no TO-DOs!"), withId(R.id.noTasksIcon))).check(matches(isDisplayed()));
+    }
+    }
