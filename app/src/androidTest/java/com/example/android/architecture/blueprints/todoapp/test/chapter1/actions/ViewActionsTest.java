@@ -99,8 +99,10 @@ public class ViewActionsTest extends BaseTest {
         onView(withText(editedToDoTitle)).check(matches(isDisplayed()));
     }
 
+    // //Exercise 2 page 30
     @Test
-    public void completeNewToDo() {       // Add new TO-DO.
+    public void completeNewToDo() {
+        // Add new TO-DO.
         onView(withId(R.id.fab_add_task)).perform(click());
         onView(withId(R.id.add_task_title))
                 .perform(typeText(toDoTitle), closeSoftKeyboard());
@@ -116,7 +118,7 @@ public class ViewActionsTest extends BaseTest {
     }
 
     @Test
-    public void deleteNewToDO() {
+    public void deleteNewToDo() {
         // Add new TO-DO.
         onView(withId(R.id.fab_add_task)).perform(click());
         onView(withId(R.id.add_task_title))
@@ -132,6 +134,8 @@ public class ViewActionsTest extends BaseTest {
         onView(withId(R.id.menu_delete)).perform(click());
 
         // Verify that All TO-DOs list is empty.
-        onView(allOf(withText("You have no TO-DOs!"), withId(R.id.noTasksIcon))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.noTasksMain), withText("You have no TO-DOs!")))
+                .check(matches(isDisplayed()));
+        onView(withId(R.id.noTasksIcon)).check(matches(isDisplayed()));
     }
 }

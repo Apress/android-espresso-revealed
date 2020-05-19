@@ -13,7 +13,11 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.PreferenceMatchers.withKey;
+import static android.support.test.espresso.matcher.ViewMatchers.hasSibling;
+import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isNotChecked;
+import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -53,5 +57,42 @@ public class DataInteractionsTest extends BaseTest {
                 .inAdapterView(allOf(withId(android.R.id.list), withParent(withId(android.R.id.list_container))))
                 .onChildView(withId(android.R.id.summary))
                 .check(matches(withText("sample@ema.il")));
+    }
+
+    //Exercise 3 page 36
+    @Test
+    public void navigateToNotificationsSettings() {
+        openDrawer();
+        onView(allOf(withId(R.id.design_menu_item_text),
+                withText(R.string.settings_title))).perform(click());
+        // Navigate to the Notifications Settings.
+        onData(instanceOf(PreferenceActivity.Header.class))
+                .inAdapterView(withId(android.R.id.list))
+                .atPosition(1)
+                .onChildView(withId(android.R.id.title))
+                .check(matches(withText("Notifications")))
+                .perform(click());
+        // Turn on the Enable Notifications toggle.
+        onData(withKey("notifications_new_message"))
+                .inAdapterView(allOf(withId(android.R.id.list), withParent(withId(android.R.id.list_container))))
+                .check(matches(isDisplayed()))
+                .perform(click());
+        // Verify that toggle is switched on and the other notifications are displayed.
+        onData(withKey("notifications_new_message"))
+                .inAdapterView(allOf(withId(android.R.id.list), withParent(withId(android.R.id.list_container))))
+                .onChildView(allOf(withId(android.R.id.switch_widget), withParent(hasSibling(withChild(withText("Enable notifications"))))))
+                .check(matches(isChecked()));
+        onData(withKey("notifications_slider"))
+                .inAdapterView(allOf(withId(android.R.id.list), withParent(withId(android.R.id.list_container))))
+                .onChildView(allOf(withId(android.R.id.title), withText("Notify when TO-DO older than")))
+                .check(matches(isDisplayed()));
+        onData(withKey("notifications_new_message_ringtone"))
+                .inAdapterView(allOf(withId(android.R.id.list), withParent(withId(android.R.id.list_container))))
+                .onChildView(allOf(withId(android.R.id.title), withText("Ringtone")))
+                .check(matches(isDisplayed()));
+        onData(withKey("notifications_new_message_vibrate"))
+                .inAdapterView(allOf(withId(android.R.id.list), withParent(withId(android.R.id.list_container))))
+                .onChildView(allOf(withId(android.R.id.title), withText("Vibrate")))
+                .check(matches(isDisplayed()));
     }
 }

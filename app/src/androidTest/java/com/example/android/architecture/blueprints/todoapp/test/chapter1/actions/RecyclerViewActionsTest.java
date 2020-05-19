@@ -33,7 +33,7 @@ public class RecyclerViewActionsTest extends BaseTest {
 
     @Test
     public void addNewToDos() throws Exception {
-        generateToDos(12);
+        generateToDos(15);
         onView(withId(R.id.tasks_list))
                 .perform(actionOnItemAtPosition(10, scrollTo()));
         onView(withId(R.id.tasks_list))
@@ -52,9 +52,9 @@ public class RecyclerViewActionsTest extends BaseTest {
         generateToDos(12);
         onView(withId(R.id.tasks_list))
                 .perform(actionOnItemAtPosition(10, scrollTo()))
-                .perform(scrollToPosition(1))
+                .perform(scrollToPosition(14))
                 .perform(scrollToPosition(11))
-                .perform(actionOnItemAtPosition(11, click()));
+                .perform(actionOnItemAtPosition(14, click()));
         Espresso.pressBack();
         onView(withId(R.id.tasks_list)).perform(scrollToPosition(2));
     }
