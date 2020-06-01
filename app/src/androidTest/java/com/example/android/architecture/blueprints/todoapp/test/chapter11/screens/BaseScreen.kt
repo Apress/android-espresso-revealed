@@ -4,9 +4,12 @@ import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
+import android.view.View
 import android.widget.ImageButton
 import com.example.android.architecture.blueprints.todoapp.R
+import com.example.android.architecture.blueprints.todoapp.test.chapter11.resources.NoAction
 import org.hamcrest.CoreMatchers.instanceOf
+import org.hamcrest.Matcher
 import org.hamcrest.core.AllOf.allOf
 
 /**
@@ -61,4 +64,14 @@ open class BaseScreen {
             return this
         }
     }
+
+    fun viewExists(element: Matcher<View>): Boolean {
+        return try {
+            onView(element).perform(NoAction())
+            true
+        } catch (e: Throwable) {
+            false
+        }
+    }
 }
+
