@@ -8,7 +8,7 @@ import org.hamcrest.CoreMatchers.allOf
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.test.chapter3.click
 
-class NotificationsScreen: BaseScreen() {
+class NotificationsScreen : BaseScreen() {
 
     /*
     ELEMENTS
@@ -29,6 +29,7 @@ class NotificationsScreen: BaseScreen() {
             withText(R.string.pref_title_new_message_notifications),
             isCompletelyDisplayed()
     )
+
     private val notificationSwitch = allOf(
             withId(android.R.id.switch_widget),
             withParent(hasSibling(withChild(withText(R.string.pref_title_new_message_notifications)))),
@@ -66,7 +67,11 @@ class NotificationsScreen: BaseScreen() {
     HELPERS
      */
 
-    fun verifiesIfAdditionalOptionsAreVisibleAfterEnablingNotifications(): Boolean {
-        return viewExists(notifyWhenToDoOlderThanOption) && viewExists(ringtoneOption) && viewExists(vibrateOption)
+    fun verifiesIfAdditionalOptionsAreVisibleAfterEnablingNotifications(): NotificationsScreen {
+        notifyWhenToDoOlderThanOption.matches(isDisplayed())
+        ringtoneOption.matches(isDisplayed())
+        vibrateOption.matches(isDisplayed())
+        return NotificationsScreen();
     }
+
 }
