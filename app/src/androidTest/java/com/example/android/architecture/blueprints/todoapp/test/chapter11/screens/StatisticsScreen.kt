@@ -26,4 +26,5 @@ class StatisticsScreen : BaseScreen() {
         okDialogButton.perform(click())
         return this
     }
+
 }
