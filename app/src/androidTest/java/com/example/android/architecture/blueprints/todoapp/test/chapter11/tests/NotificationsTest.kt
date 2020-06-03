@@ -1,16 +1,11 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter11.tests
 
 import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
 import com.example.android.architecture.blueprints.todoapp.settings.SettingsActivity
-import com.example.android.architecture.blueprints.todoapp.test.BaseTest
 import com.example.android.architecture.blueprints.todoapp.test.chapter11.screens.NotificationsScreen
 import com.example.android.architecture.blueprints.todoapp.test.chapter11.screens.SettingsScreen
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
 class NotificationsTest {
 
@@ -22,7 +17,6 @@ class NotificationsTest {
 
     @Test
     fun enablesNotificationsAndVerifiesIfAdditionalOptionsArteVisible() {
-        settingsScreen
         settingsScreen.openNotificationsScreen()
         notificationsScreen.enableNotificationsToggle()
                 .verifiesIfAdditionalOptionsAreVisibleAfterEnablingNotifications()

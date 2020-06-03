@@ -4,7 +4,6 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.NoMatchingViewException
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.uiautomator.By
 import android.support.test.uiautomator.UiDevice
@@ -34,7 +33,7 @@ class GeneralScreen {
     ACTIONS
      */
 
-    fun clickOnEmailToShareOption(): GeneralScreen {
+    fun tapOnEmailToShareOption(): GeneralScreen {
         onView(emailToShareOption).click()
         return this
     }

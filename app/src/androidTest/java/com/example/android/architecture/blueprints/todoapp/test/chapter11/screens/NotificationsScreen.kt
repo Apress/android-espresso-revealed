@@ -1,8 +1,6 @@
 package com.example.android.architecture.blueprints.todoapp.test.chapter11.screens
 
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import org.hamcrest.CoreMatchers.allOf
 import com.example.android.architecture.blueprints.todoapp.R
@@ -53,7 +51,6 @@ class NotificationsScreen : BaseScreen() {
             isCompletelyDisplayed()
     )
 
-
     /*
     ACTIONS
     */
@@ -73,5 +70,4 @@ class NotificationsScreen : BaseScreen() {
         vibrateOption.matches(isDisplayed())
         return NotificationsScreen();
     }
-
 }

@@ -3,7 +3,6 @@ package com.example.android.architecture.blueprints.todoapp.test.chapter11.tests
 import android.support.test.rule.ActivityTestRule
 import com.example.android.architecture.blueprints.todoapp.settings.SettingsActivity
 import com.example.android.architecture.blueprints.todoapp.test.chapter11.screens.DataAndSyncScreen
-import com.example.android.architecture.blueprints.todoapp.test.chapter11.screens.NotificationsScreen
 import com.example.android.architecture.blueprints.todoapp.test.chapter11.screens.SettingsScreen
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -20,11 +19,10 @@ class DataAndSyncTest {
 
     @Test
     fun enablesNotificationsAndVerifiesIfAdditionalOptionsArteVisible() {
-        settingsScreen
         settingsScreen.openDataAndSyncScreen()
-        dataAndSyncScreen.clickOnSyncFrequencyOption()
-                .clickOnNeverOption()
-                .clickOnSyncFrequencyOption()
+        dataAndSyncScreen.tapOnSyncFrequencyOption()
+                .tapOnNeverOption()
+                .tapOnSyncFrequencyOption()
         assertTrue("Never option isn't marked.",
                 dataAndSyncScreen.isNeverOptionSelected())
     }

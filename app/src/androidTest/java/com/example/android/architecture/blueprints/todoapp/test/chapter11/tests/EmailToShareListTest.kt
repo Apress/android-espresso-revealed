@@ -17,9 +17,8 @@ class EmailToShareListTest {
 
     @Test
     fun cancelEmailToShareToDoListOption() {
-        SettingsScreen()
         settingsScreen.openGeneralScreen()
-        generalScreen.clickOnEmailToShareOption()
+        generalScreen.tapOnEmailToShareOption()
                 .cancelEmailToShareDialog()
         assertTrue("General screen isn't displayed after pressing Cancel on dialog view",
                 generalScreen.isGeneralScreenDisplayed())
@@ -27,9 +26,8 @@ class EmailToShareListTest {
 
     @Test
     fun addEmailToShareToDoListOption() {
-        SettingsScreen()
         settingsScreen.openGeneralScreen()
-        generalScreen.clickOnEmailToShareOption()
+        generalScreen.tapOnEmailToShareOption()
                 .addEmailAddressToShare()
                 .editEmailAdressToShare()
         assertTrue("Example email isn't set as email to share.",
