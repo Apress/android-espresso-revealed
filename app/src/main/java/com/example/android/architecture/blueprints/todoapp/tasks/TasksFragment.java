@@ -51,6 +51,7 @@ import com.example.android.architecture.blueprints.todoapp.taskdetail.TaskDetail
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -182,13 +183,15 @@ public class TasksFragment extends Fragment implements TasksContract.View {
             case R.id.menu_share:
                 String email = PreferenceManager
                         .getDefaultSharedPreferences(getContext())
-                        .getString("email_text", "");
-                Intent shareIntent = new Intent();
+                        .getString("email_edit_text", "");
+
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 shareIntent.putExtra(Intent.EXTRA_TEXT, getTaskListAsArray());
-                shareIntent.putExtra(Intent.EXTRA_EMAIL, email);
+                shareIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+
                 startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.share_to)));
-                //startActivity(shareIntent);
+
                 break;
         }
         return true;
